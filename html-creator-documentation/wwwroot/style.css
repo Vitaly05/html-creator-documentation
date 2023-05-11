@@ -24,6 +24,10 @@
     --default-font-size: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .default-padding {
     padding: 0 5vw;
 }

@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="wwwroot\Files\html-creator-library.dll" />
     <None Include="wwwroot\Fonts\Inter-Bold.ttf" />
     <None Include="wwwroot\Fonts\Inter-Regular.ttf" />
     <None Include="wwwroot\index.html" />

@@ -12,29 +12,41 @@
 <body>
     <header class="default-padding flex jc-space-between ai-center">
         <div class="flex">
-            <div class="logo flex ai-center clickable-element">
-                <img src="Res/Logo.svg" alt="Logo">
-                <div class="text">
-                    HTML Creator
+            <a href="/">
+                <div class="logo flex ai-center clickable-element">
+                    <img src="Res/Logo.svg" alt="Logo">
+                    <div class="text">
+                        HTML Creator
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <div class="navigation flex jc-space-between ai-center">
-                <div class="js-documentation clickable-element">Документация</div>
-                <div class="js-community clickable-element">Сообщество</div>
-                <div class="js-dev-connection clickable-element">Связь с разработчиком</div>
+                <a href="/docs">
+                    <div class="clickable-element">Документация</div>
+                </a>
+                <a href="https://t.me/+X1GHe9cpAQg2Nzdi" target="_blank">
+                    <div class="clickable-element">Сообщество</div>
+                </a>
+                <a href="https://t.me/vitalySharp" target="_blank">
+                    <div class="clickable-element">Связь с разработчиком</div>
+                </a>
             </div>
         </div>
 
         <div class="links flex jc-space-between ai-center">
-            <div class="js-download clickable-element">
-                <div>Скачать</div>
-                <img src="Res/Download.svg" alt="Download">
-            </div>
-            <div class="js-github clickable-element">
-                <div>GitHub</div>
-                <img src="Res/Open Link.svg" alt="Open Link">
-            </div>
+            <a href="/download">
+                <div class="clickable-element">
+                    <div>Скачать</div>
+                    <img src="Res/Download.svg" alt="Download">
+                </div>
+            </a>
+            <a href="https://github.com/Vitaly05/html-creator-library" target="_blank">
+                <div class="clickable-element">
+                    <div>GitHub</div>
+                    <img src="Res/Open Link.svg" alt="Open Link">
+                </div>
+            </a>
         </div>
     </header>
 
@@ -47,7 +59,9 @@
                 Напиши сайт на HTML и CSS при помощи C#
             </div>
             <div>
-                <button class="js-documentation clickable-element">Docs</button>
+                <a href="/docs">
+                    <button class="clickable-element">Docs</button>
+                </a>
             </div>
         </div>
 
@@ -83,7 +97,5 @@
     <footer class="flex jc-center ai-center">
         Copyright © 2023 Лозюк Виталий
     </footer>
-
-    <script src="Js/index.js"></script>
 </body>
 </html>
