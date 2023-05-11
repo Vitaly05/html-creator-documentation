@@ -2,11 +2,9 @@
 
 namespace html_creator_documentation.Controllers
 {
+    [ApiController]
     public class MainController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

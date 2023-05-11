@@ -7,4 +7,8 @@
     <RootNamespace>html_creator_documentation</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Root\" />
+  </ItemGroup>
+
 </Project>

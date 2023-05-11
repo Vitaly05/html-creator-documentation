@@ -4,8 +4,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseAuthorization();
-
 app.MapControllers();
+
+app.MapGet("/", async (context) => await context.Response.SendFileAsync("Root/index.html"));
 
 app.Run();
