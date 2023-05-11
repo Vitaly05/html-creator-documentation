@@ -8,7 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Root\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Fonts\Inter-Bold.ttf" />
+    <None Include="wwwroot\Fonts\Inter-Regular.ttf" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\Js\index.js" />
+    <None Include="wwwroot\Res\Arrow.svg" />
+    <None Include="wwwroot\Res\CSS.svg" />
+    <None Include="wwwroot\Res\Download.svg" />
+    <None Include="wwwroot\Res\Dynamic.svg" />
+    <None Include="wwwroot\Res\HTML.svg" />
+    <None Include="wwwroot\Res\Logo.svg" />
+    <None Include="wwwroot\Res\Open Link.svg" />
+    <None Include="wwwroot\style.css" />
   </ItemGroup>
 
 </Project>
