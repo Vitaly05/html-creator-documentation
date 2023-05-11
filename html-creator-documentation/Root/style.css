@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Inter';
+    font-style: normal;
+    color: #00C2E3;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Fonts/Inter-Regular.ttf');
+}
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('Fonts/Inter-Bold.ttf');
+}
+
+:root {
+    --big-font-size: 52px;
+    --semi-big-fong-size: 36px;
+    --middle-font-size: 26px;
+    --default-font-size: 20px;
+}
+
+.default-padding {
+    padding: 0 5vw;
+}
+.flex {
+    display: flex;
+}
+.column-direction {
+    flex-direction: column;
+}
+.jc-center {
+    justify-content: center;
+}
+.jc-space-between {
+    justify-content: space-between;
+}
+.jc-space-around {
+    justify-content: space-around;
+}
+.ai-center {
+    align-items: center;
+}
+.ai-start {
+    align-items: start;
+}
+
+
+.clickable-element {
+    transition: opacity 0.2s ease 0s;
+}
+.clickable-element:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+header, footer {
+    height: 5vh;
+    background-color: #1B1C26;
+    font-size: var(--default-font-size);
+}
+header {
+    border-bottom: 1px solid #FFFFFF;
+}
+header .logo .text {
+    color: #65E9FF;
+    font-family: 'Inter Bold';
+    font-size: var(--middle-font-size);
+    margin-left: 12px;
+}
+header .navigation {
+    margin-left: 70px;
+    width: auto;
+    column-gap: 30px;
+}
+header .links div {
+    display: flex;
+    margin-left: 32px;
+}
+header .links img {
+    margin-left: 4px;
+}
+
+main {
+    height: 90vh;
+}
+main div {
+    height: 50%;
+}
+
+.main {
+    background-color: #1B1C26;
+}
+.main div {
+    height: auto;
+}
+.main .sup-text {
+    font-family: 'Inter Bold';
+    color: #65E9FF;
+    text-align: center;
+    font-size: var(--big-font-size);
+}
+.main .sub-text {
+    font-size: var(--semi-big-fong-size);
+}
+.main button {
+    padding: 1vh 2vw;
+    background: #9AF0FF;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+
+    font-size: var(--default-font-size);
+    font-family: 'Inter Bold';
+    color: black;
+}
+
+.info .items {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 10%;
+}
+
+.info .item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: auto;
+}
+.info .item div {
+    height: auto;
+    color: #1B1C26;
+}
+.info .item .sup-text {
+    font-family: 'Inter Bold';
+    font-size: var(--middle-font-size);
+    margin-top: 8px;
+}
+.info .item .sub-text {
+    font-size: var(--default-font-size);
+    margin-top: 24px;
+}
