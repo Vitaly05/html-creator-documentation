@@ -9,5 +9,6 @@ app.UseStaticFiles();
 app.MapControllers();
 
 app.MapGet("/", async (context) => await context.Response.SendFileAsync("wwwroot/index.html"));
+app.MapGet("/docs", async (context) => await context.Response.SendFileAsync("wwwroot/docs.html"));
 
 app.Run();
