@@ -1,0 +1,234 @@
+[
+  {
+    "Type": "Title",
+    "Text": "Пространство имён «html_creator_library»"
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class HTML"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [ "HTML(Body body = null, Head head = null)" ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Конструктор класса. Передается body и head html документа для последующего сохранения."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [ "void SetStyles(params Style[] styles)" ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Метод для добавления стилей. В styles через запятую можно добавить сколько угодно объектов, которые наследуются от класса Style."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [ "void SaveFile(string path = “../../../../”, string htmlName = null, string cssName = null)" ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Метод для сохранения файлов сайта. Path – путь к файлам; htmlName – название html файла (при указании нужно писать в конце «.html»; cssName – Название css файла (при указании нужно писать в конце «.css»."
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class Head"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "void SetContext(params HeadComponent[] components)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Устанавливает содержимое тега \u003Chead\u003E в html файле. Через запятую можно добавить сколько угодно объектов, которые наследуются от класса HeadComponent."
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class Body"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "void SetContext(params BodyComponent[] components)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Устанавливает содержимое тега \u003Cbody\u003E в html файле. Через запятую можно добавить сколько угодно объектов, которые наследуются от класса BodyComponent."
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class Head"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "void SetContext(params HeadComponent[] components)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Устанавливает содержимое тега \u003Chead\u003E в html файле. Через запятую можно добавить сколько угодно объектов, которые наследуются от класса HeadComponent."
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class Body"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "void SetContext(params BodyComponent[] components)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Устанавливает содержимое тега \u003Cbody\u003E в html файле. Через запятую можно добавить сколько угодно объектов, которые наследуются от класса BodyComponent."
+  },
+  {
+    "Type": "SubTitle",
+    "Text": "class HtmlAttribute"
+  },
+  {
+    "Type": "Description",
+    "Text": "HtmlAttribute в качестве возвращаемого значения используется для того, чтобы перечисленные ниже методы можно было писать в цепочке, например:"
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "new Line(new HtmlAttribute().Color(\u0022red\u0022).Size(\u002220px\u0022).Width(\u002290%\u0022))"
+    ]
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Class(string className)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут class =\u0022{className}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Id(string id)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут id =\u0022{id}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute AccessKey(string accessKey)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут accesskey =\u0022{accessKey}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Data(string name, string value)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут data-{name}=\u0022{value}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Dir(string dir)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут dir=\u0022{dir}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Hidden(bool isHidden)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут hidden, если isHidden = true."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute TabIndex(int tabIndex)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут tabindex=\u0022{tabIndex}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Title(string title)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут title=\u0022{title}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Color(string color)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут color=\u0022{color}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Size(string size)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут size=\u0022{size}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Width(string width)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут width=\u0022{width}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Height(string height)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут height=\u0022{height}\u0022."
+  },
+  {
+    "Type": "Code",
+    "CodeLines": [
+      "HtmlAttribute Custom(string attribute)"
+    ]
+  },
+  {
+    "Type": "Description",
+    "Text": "Добавляет атрибут, указанный в переменной attribute."
+  }
+]
