@@ -1,0 +1,144 @@
+﻿@page
+@using html_creator_documentation.Data;
+@using html_creator_documentation.Pages;
+@model DocsModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>HTML Creator Library - @Model.Title</title>
+</head>
+<body>
+    <header class="default-padding flex jc-space-between ai-center">
+        <div class="flex">
+            <a href="/">
+                <div class="logo flex ai-center clickable-element">
+                    <img src="Res/Logo.svg" alt="Logo">
+                    <div class="text">
+                        HTML Creator
+                    </div>
+                </div>
+            </a>
+
+            <div class="navigation flex jc-space-between ai-center">
+                <a href="/docs">
+                    <div class="clickable-element">Документация</div>
+                </a>
+                <a href="https://t.me/+X1GHe9cpAQg2Nzdi" target="_blank">
+                    <div class="clickable-element">Сообщество</div>
+                </a>
+                <a href="https://t.me/vitalySharp" target="_blank">
+                    <div class="clickable-element">Связь с разработчиком</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="links flex jc-space-between ai-center">
+            <a href="/download">
+                <div class="clickable-element">
+                    <div>Скачать</div>
+                    <img src="Res/Download.svg" alt="Download">
+                </div>
+            </a>
+            <a href="https://github.com/Vitaly05/html-creator-library" target="_blank">
+                <div class="clickable-element">
+                    <div>GitHub</div>
+                    <img src="Res/Open Link.svg" alt="Open Link">
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-documentation">
+        <div class="navigation flex column-direction jc-center ai-start">
+            <a href="/docs?topic=@Topics.Start"><div class="@(Model.Title == Topics.Start ? "selected" : null)">@Topics.Start</div></a>
+            <a href="/docs?topic=@Topics.Namespaces"><div class="@(Model.Title == Topics.Namespaces ? "selected" : null)">@Topics.Namespaces</div></a>
+            <a href="/docs?topic=@Topics.StaticClasses"><div class="@(Model.Title == Topics.StaticClasses ? "selected" : null)">@Topics.StaticClasses</div></a>
+            <a href="/docs?topic=@Topics.Examples"><div class="@(Model.Title == Topics.Examples ? "selected" : null)">@Topics.Examples</div></a>
+        </div>
+
+        <div class="article">
+            <h1 class="item">@Model.Title</h1>
+
+            @foreach (var element in Model.ArticleElements)
+            {
+                if (element.Type == ArticleElements.Title)
+                {
+                    <h2 class="item title" id="@element.Text">@element.Text</h2>
+                }
+                if (element.Type == ArticleElements.SubTitle)
+                {
+                    <h3 class="item subtitle" id="@element.Text">@element.Text</h3>
+                }
+                else if (element.Type == ArticleElements.Description)
+                {
+                    <div class="text item">@element.Text</div>
+                }
+                else if (element.Type == ArticleElements.List)
+                {
+                    <div class="item list">
+                        @foreach (var item in element.Elements)
+                        {
+                            <div class="list-item flex">
+                                <img src="~/Res/List Item.svg">
+                                <div class="text">@item</div>
+                             </div>
+                        }
+                    </div>
+                }
+                else if (element.Type == ArticleElements.Tip)
+                {
+                    <div class="tip item flex column-direction jc-space-between">
+                        <div class="flex">
+                            <img src="Res/Tip.svg" alt="Tip">
+                            <div class="title">Совет</div>
+                        </div>
+                        <div class="text">@element.Text</div>
+                    </div>
+                }
+                else if (element.Type == ArticleElements.Code)
+                {
+                    <div class="item code">
+                        @for (int iii = 0; iii < element.CodeLines.Count(); ++iii)
+                        {
+                            <div class="line">@(iii + 1)</div>
+                            <div class="text">@element.CodeLines[iii]</div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+
+        <div class="sub-navigation flex jc-center">
+            <div class="nav">
+                <div class="top flex ai-center">
+                    <img src="Res/List.svg" alt="List">
+                    <div class="title">В этой статье</div>
+                </div>
+                <div class="bottom flex column-direction">
+
+                    @foreach (var element in Model.ArticleElements)
+                    {
+                        if (element.Type == ArticleElements.Title)
+                        {
+                            <a href="#@element.Text"><div>@element.Text</div></a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="flex jc-center ai-center">
+        Copyright © 2023 Лозюк Виталий
+    </footer>
+</body>
+</html>

@@ -35,6 +35,9 @@ h1 {
 h2 {
     font-size: var(--semi-big-font-size);
 }
+h3 {
+    font-size: var(--middle-font-size);
+}
 
 .default-padding {
     padding: 0 5vw;
@@ -177,6 +180,7 @@ main {
 .main-documentation .navigation {
     row-gap: 30px;
     border-right: 1px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5vw;
 }
 .main-documentation .navigation div.selected {
     font-family: 'Inter Bold';
@@ -186,12 +190,17 @@ main {
     padding: 44px;
     overflow-y: auto;
 }
-.main-documentation .article h1, .main-documentation .article h2 {
+.main-documentation .article h1,
+.main-documentation .article h2,
+.main-documentation .article h3 {
     color: #1B1C26;
     font-family: 'Inter Bold';
 }
 .main-documentation .article .item {
     margin-top: 48px;
+}
+.main-documentation .article .title {
+    margin-top: 60px;
 }
 .main-documentation .article .text {
     color: #1B1C26;
@@ -206,20 +215,54 @@ main {
     width: 24px;
 }
 .main-documentation .article .tip .title {
+    font-size: var(--middle-font-size);
     margin-left: 8px;
+    margin-top: 0;
     color: #1B1C26;
     font-family: 'Inter Bold';
-    font-size: var(--middle-font-size);
 }
+
 .main-documentation .article .tip .text {
     font-size: var(--default-font-size);
     margin: 20px 0;
+}
+
+.main-documentation .article .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.main-documentation .article .list .text {
+    color: #1B1C26;
+    font-size: var(--default-font-size);
+    margin-left: 10px;
+}
+
+.main-documentation .article .code {
+    background-color: #1B1C26;
+    padding: 20px;
+    border-radius: 10px;
+    
+    display: grid;
+    grid-template-columns: 40px auto;
+    row-gap: 15px;
+}
+.main-documentation .article .code div {
+    color: #65E9FF;
+    font-size: var(--default-font-size);
+    font-family: 'Inter Bold';
+    display: flex;
+    align-items: center;
 }
 
 .main-documentation .sub-navigation .nav {
     width: fit-content;
     min-width: 200px;
     margin-top: 52px;
+    margin-right: 5vw;
+    margin-left: 5px;
 }
 .main-documentation .sub-navigation .top {
     background: #1B1C26;
