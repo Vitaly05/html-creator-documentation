@@ -1,43 +1,49 @@
 [
 	{
-		"Type": "Description",
-		"Text": "Для начала работы нужно скачать файл «html-creator-library.dll» и создать «Консольное приложение C# (.Net 6.0+)». В проект добавить скачанный файл «html-creator-library.dll». Далее ПКМ по Dependencies -> Add Project Reference -> Browse -> Выбрать файл «html-creator-library.dll» -> Ок. "
-	},
-	{
-		"Type": "Description",
-		"Text": "Для работы с библиотекой необходимо подключать пространства имён с помощью «using». Все существующие пространства имён в html-creator-library:"
-	},
-	{
-		"Type": "List",
-		"Elements": 
-		[
-			"html_creator_library",
-			"html_creator_library.BodyComponents",
-			"html_creator_library.BodyComponents.Containers",
-			"html_creator_library.HeadComponents",
-			"html_creator_library.Css",
-			"html_creator_library.Css.StyleComponents"	
+		"Elements": [
+			{
+				"Type": "Description",
+				"Text": "Для начала работы нужно скачать файл «html-creator-library.dll» и создать «Консольное приложение C# (.Net 6.0+)». В проект добавить скачанный файл «html-creator-library.dll». Далее ПКМ по Dependencies -> Add Project Reference -> Browse -> Выбрать файл «html-creator-library.dll» -> Ок. "
+			},
+			{
+				"Type": "Description",
+				"Text": "Для работы с библиотекой необходимо подключать пространства имён с помощью «using». Все существующие пространства имён в html-creator-library:"
+			},
+			{
+				"Type": "List",
+				"Elements": [
+					"html_creator_library",
+					"html_creator_library.BodyComponents",
+					"html_creator_library.BodyComponents.Containers",
+					"html_creator_library.HeadComponents",
+					"html_creator_library.Css",
+					"html_creator_library.Css.StyleComponents"
+				]
+			}
 		]
 	},
 	{
-		"Type": "Description",
-		"Text": "Для того, чтобы создался начальный файл, воспользуйтесь следующим кодом:"
-	},
-	{
-		"Type": "Code",
-		"CodeLines":
-		[
-			"const string siteFolder = \"../../../../site/\";",
-			"HTML site = new HTML();",
-			"site.SaveFile(siteFolder, htmlName: \"index.html\", cssName: \"style.css\");"
+		"Elements": [
+			{
+				"Type": "Description",
+				"Text": "Для того, чтобы создался начальный файл, воспользуйтесь следующим кодом:"
+			},
+			{
+				"Type": "Code",
+				"CodeLines": [
+					"const string siteFolder = \"../../../../site/\";",
+					"HTML site = new HTML();",
+					"site.SaveFile(siteFolder, htmlName: \"index.html\", cssName: \"style.css\");"
+				]
+			},
+			{
+				"Type": "Tip",
+				"Text": "Важно: папку, в которую будет сохранятся сайт нужно создать заранее в том месте, которое вы указываете в переменной siteFoler!"
+			},
+			{
+				"Type": "Description",
+				"Text": "После запуска проекта в указанной папке будет создан файл index.html."
+			}
 		]
-	},
-	{
-		"Type": "Tip",
-		"Text": "Важно: папку, в которую будет сохранятся сайт нужно создать заранее в том месте, которое вы указываете в переменной siteFoler!"
-	},
-	{
-		"Type": "Description",
-		"Text": "После запуска проекта в указанной папке будет создан файл index.html."
 	}
 ]

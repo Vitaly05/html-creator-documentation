@@ -1,6 +1,6 @@
 ﻿namespace html_creator_documentation.Data
 {
-    public static class ArticleElements
+    public static class ArticleElementsTypes
     {
         public const string Title = "Title";
         public const string SubTitle = "SubTitle";

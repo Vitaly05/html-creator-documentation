@@ -84,6 +84,7 @@ header {
 }
 footer {
     height: 5vh;
+    border-top: 1px solid #FFFFFF;
 }
 
 header .logo .text {
@@ -196,11 +197,28 @@ main {
     color: #1B1C26;
     font-family: 'Inter Bold';
 }
-.main-documentation .article .item {
-    margin-top: 48px;
+.main-documentation .article .blocks-separator {
+    background-color: #1B1C26;
+    opacity: 0.4;
+    border-radius: 1px;
+    width: 90%;
+    height: 4px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
-.main-documentation .article .title {
+.main-documentation .article .block:nth-child(2) {
     margin-top: 60px;
+}
+.main-documentation .article .block {
+    margin-top: 50px;
+}
+.main-documentation .article .block .text-center {
+    text-align: center;
+}
+.main-documentation .article .block > .text,
+.main-documentation .article .block > .code,
+.main-documentation .article .block > .tip {
+    margin-top: 20px;
 }
 .main-documentation .article .text {
     color: #1B1C26;

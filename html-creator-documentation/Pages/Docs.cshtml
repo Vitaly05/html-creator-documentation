@@ -65,76 +65,92 @@
         </div>
 
         <div class="article">
-            <h1 class="item">@Model.Title</h1>
-
-            @foreach (var element in Model.ArticleElements)
+            @if (Model.CanEdit)
             {
-                if (element.Type == ArticleElements.Title)
-                {
-                    <h2 class="item title" id="@element.Text">@element.Text</h2>
-                }
-                if (element.Type == ArticleElements.SubTitle)
-                {
-                    <h3 class="item subtitle" id="@element.Text">@element.Text</h3>
-                }
-                else if (element.Type == ArticleElements.Description)
-                {
-                    <div class="text item">@element.Text</div>
-                }
-                else if (element.Type == ArticleElements.List)
-                {
-                    <div class="item list">
-                        @foreach (var item in element.Elements)
-                        {
-                            <div class="list-item flex">
-                                <img src="~/Res/List Item.svg">
-                                <div class="text">@item</div>
-                             </div>
-                        }
-                    </div>
-                }
-                else if (element.Type == ArticleElements.Tip)
-                {
-                    <div class="tip item flex column-direction jc-space-between">
-                        <div class="flex">
-                            <img src="Res/Tip.svg" alt="Tip">
-                            <div class="title">Совет</div>
-                        </div>
-                        <div class="text">@element.Text</div>
-                    </div>
-                }
-                else if (element.Type == ArticleElements.Code)
-                {
-                    <div class="item code">
-                        @for (int iii = 0; iii < element.CodeLines.Count(); ++iii)
-                        {
-                            <div class="line">@(iii + 1)</div>
-                            <div class="text">@element.CodeLines[iii]</div>
-                        }
-                    </div>
-                }
+                <button>Редактировать</button>
+            }
+            <h1 class="article-title">@Model.Title</h1>
+
+            @foreach (var block in Model.ArticleBlocks)
+            {
+                <div class="block">
+                    @if (block.IsMain)
+                    {
+                        <div class="blocks-separator"></div>
+                    }
+                    @foreach (var element in block.Elements)
+                    {
+						if (element.Type == ArticleElementsTypes.Title)
+						{
+                            <h2 class="title text-center" id="@element.Text">@element.Text</h2>
+						}
+						else if (element.Type == ArticleElementsTypes.SubTitle)
+						{
+                            <h3 class="subtitle @(block.IsMain ? "text-center" : "")" id="@element.Text">@element.Text</h3>
+						}
+						else if (element.Type == ArticleElementsTypes.Description)
+						{
+						    <div class="text">@element.Text</div>
+						}
+						else if (element.Type == ArticleElementsTypes.List)
+						{
+						    <div class="list">
+							@foreach (var item in element.Elements)
+							{
+								<div class="list-item flex">
+									<img src="~/Res/List Item.svg">
+									<div class="text">@item</div>
+								</div>
+							}
+						    </div>
+						}
+						else if (element.Type == ArticleElementsTypes.Tip)
+						{
+						    <div class="tip flex column-direction jc-space-between">
+							    <div class="flex">
+								    <img src="Res/Tip.svg" alt="Tip">
+								    <div class="title">Совет</div>
+							    </div>
+							    <div class="text">@element.Text</div>
+						    </div>
+						}
+						else if (element.Type == ArticleElementsTypes.Code)
+						{
+						    <div class="code">
+							    @for (int iii = 0; iii < element.CodeLines.Count(); ++iii)
+							    {
+								    <div class="line">@(iii + 1)</div>
+								    <div class="text">@element.CodeLines[iii]</div>
+							    }
+						    </div>
+					    }
+                    }
+                </div>
             }
 
         </div>
 
-        <div class="sub-navigation flex jc-center">
-            <div class="nav">
-                <div class="top flex ai-center">
-                    <img src="Res/List.svg" alt="List">
-                    <div class="title">В этой статье</div>
-                </div>
-                <div class="bottom flex column-direction">
+        @if (Model.HasTitle)
+        {
+            <div class="sub-navigation flex jc-center">
+                <div class="nav">
+                    <div class="top flex ai-center">
+                        <img src="Res/List.svg" alt="List">
+                        <div class="title">В этой статье</div>
+                    </div>
+                    <div class="bottom flex column-direction">
 
-                    @foreach (var element in Model.ArticleElements)
-                    {
-                        if (element.Type == ArticleElements.Title)
+                        @foreach (var element in Model.GetTitles())
                         {
-                            <a href="#@element.Text"><div>@element.Text</div></a>
+                            if (element.Type == ArticleElementsTypes.Title)
+                            {
+                                <a href="#@element.Text"><div>@element.Text</div></a>
+                            }
                         }
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </main>
 
     <footer class="flex jc-center ai-center">

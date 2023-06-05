@@ -2,8 +2,8 @@
 {
     public class ArticleElement
     {
-        public string Type { get; set; }
-        public string Text { get; set; }
+        public string Type { get; set; } = "";
+        public string Text { get; set; } = "";
         public List<string> Elements { get; set; } = new List<string>();
         public List<string> CodeLines { get; set; } = new List<string>();
 
