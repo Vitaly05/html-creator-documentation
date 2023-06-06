@@ -1,5 +1,6 @@
 ﻿@page
 @using html_creator_documentation.Data;
+@using html_creator_documentation.Models;
 @using html_creator_documentation.Pages;
 @model DocsModel
 
@@ -11,6 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="jQuery/jquery.js"></script>
+    <script src="jQueryUI/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jQueryUI/jquery-ui.min.css" />
     <link rel="stylesheet" href="style.css" />
 
     <title>HTML Creator Library - @Model.Title</title>
@@ -65,67 +69,14 @@
         </div>
 
         <div class="article">
-            @if (Model.CanEdit)
-            {
-                <button>Редактировать</button>
-            }
             <h1 class="article-title">@Model.Title</h1>
 
-            @foreach (var block in Model.ArticleBlocks)
+            @foreach (var element in Model.ArticleElements)
             {
-                <div class="block">
-                    @if (block.IsMain)
-                    {
-                        <div class="blocks-separator"></div>
-                    }
-                    @foreach (var element in block.Elements)
-                    {
-						if (element.Type == ArticleElementsTypes.Title)
-						{
-                            <h2 class="title text-center" id="@element.Text">@element.Text</h2>
-						}
-						else if (element.Type == ArticleElementsTypes.SubTitle)
-						{
-                            <h3 class="subtitle @(block.IsMain ? "text-center" : "")" id="@element.Text">@element.Text</h3>
-						}
-						else if (element.Type == ArticleElementsTypes.Description)
-						{
-						    <div class="text">@element.Text</div>
-						}
-						else if (element.Type == ArticleElementsTypes.List)
-						{
-						    <div class="list">
-							@foreach (var item in element.Elements)
-							{
-								<div class="list-item flex">
-									<img src="~/Res/List Item.svg">
-									<div class="text">@item</div>
-								</div>
-							}
-						    </div>
-						}
-						else if (element.Type == ArticleElementsTypes.Tip)
-						{
-						    <div class="tip flex column-direction jc-space-between">
-							    <div class="flex">
-								    <img src="Res/Tip.svg" alt="Tip">
-								    <div class="title">Совет</div>
-							    </div>
-							    <div class="text">@element.Text</div>
-						    </div>
-						}
-						else if (element.Type == ArticleElementsTypes.Code)
-						{
-						    <div class="code">
-							    @for (int iii = 0; iii < element.CodeLines.Count(); ++iii)
-							    {
-								    <div class="line">@(iii + 1)</div>
-								    <div class="text">@element.CodeLines[iii]</div>
-							    }
-						    </div>
-					    }
-                    }
-                </div>
+                @await Html.PartialAsync("_ArticleElement", new ArticleElementModel {
+                    CanEdit = Model.CanEdit,
+                    ArticleElement = element
+                })
             }
 
         </div>
@@ -142,19 +93,28 @@
 
                         @foreach (var element in Model.GetTitles())
                         {
-                            if (element.Type == ArticleElementsTypes.Title)
-                            {
-                                <a href="#@element.Text"><div>@element.Text</div></a>
-                            }
+                            <a href="#@element.Title"><div>@element.Title</div></a>
                         }
                     </div>
                 </div>
             </div>
         }
+
+        <div class="dialog" id="edit-dialog" title="Редактирование контента">
+            <form>
+                <label for="value">Значение</label>
+                <textarea type="text" name="value"></textarea>
+            </form>
+        </div>
     </main>
 
     <footer class="flex jc-center ai-center">
         Copyright © 2023 Лозюк Виталий
     </footer>
+
+    @if (Model.CanEdit)
+    {
+        <script src="Js/editDocs.js"></script>
+    }
 </body>
 </html>

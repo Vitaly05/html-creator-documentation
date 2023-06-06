@@ -1,0 +1,9 @@
+﻿@using html_creator_documentation.Models;
+@model ArticleEditToolsModel
+
+@if (Model.CanEdit)
+{
+    <div class="tools">
+        <img class="clickable-element move-button" data-target="@Model.Target" src="Res/UpDown.svg" alt="move">
+    </div>
+}

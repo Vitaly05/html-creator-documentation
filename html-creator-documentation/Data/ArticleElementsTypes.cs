@@ -2,11 +2,11 @@
 {
     public static class ArticleElementsTypes
     {
-        public const string Title = "Title";
-        public const string SubTitle = "SubTitle";
-        public const string Description = "Description";
-        public const string Tip = "Tip";
-        public const string List = "List";
-        public const string Code = "Code";
+        public const string LargeBlock = "large-block";
+        public const string BigBlock = "big-block";
+        public const string Description = "description";
+        public const string Tip = "tip";
+        public const string List = "list";
+        public const string Code = "code";
     }
 }

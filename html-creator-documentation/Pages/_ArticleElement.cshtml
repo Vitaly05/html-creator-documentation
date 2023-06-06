@@ -1,0 +1,73 @@
+﻿@using html_creator_documentation.Data;
+@using html_creator_documentation.Models;
+@model ArticleElementModel
+
+<div class="@Model.ArticleElement.Type">
+    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = Model.ArticleElement.Type, CanEdit = Model.CanEdit })
+    
+    @if (Model.ArticleElement.Title != String.Empty)
+    {
+        <h2 class="title text-center" id="@Model.ArticleElement.Title">@Model.ArticleElement.Title</h2>
+    }
+
+    @if (Model.ArticleElement.InnerElements.Count > 0)
+    {
+        <div class="empty"></div>
+        @foreach (var innerElement in Model.ArticleElement.InnerElements)
+        {
+            if (innerElement.Type == ArticleElementsTypes.Description)
+            {
+                <div class="text block">
+                    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
+                    <div class="value">@innerElement.Value</div>
+                    </div>
+            }
+            else if (innerElement.Type == ArticleElementsTypes.List)
+            {
+                <div class="list block">
+                    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
+                    @foreach (var value in innerElement.ListValues)
+                    {
+                        <div class="list-item flex">
+                            <img src="Res/List Item.svg">
+                            <div class="value">@value</div>
+                        </div>
+                    }
+                </div>
+            }
+            else if (innerElement.Type == ArticleElementsTypes.Tip)
+            {
+                <div class="block flex column-direction jc-space-between">
+                    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
+                    <div class="tip">
+                        <div class="flex">
+                            <img src="Res/Tip.svg" alt="Tip">
+                            <div class="title">Совет</div>
+                        </div>
+                        <div class="value">@innerElement.Value</div>
+                    </div>
+                </div>
+            }
+            else if (innerElement.Type == ArticleElementsTypes.Code)
+            {
+                <div class="block">
+                    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
+                    <div class="code">
+                        @for (int iii = 0; iii < innerElement.ListValues.Count(); ++iii)
+                        {
+                            <div class="line">@(iii + 1)</div>
+                            <div class="value">@innerElement.ListValues[iii]</div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                @await Html.PartialAsync("_ArticleElement", new ArticleElementModel {
+                    CanEdit = Model.CanEdit,
+                    ArticleElement = innerElement
+                })
+            }
+        }
+    }
+</div>

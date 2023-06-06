@@ -187,40 +187,103 @@ main {
     font-family: 'Inter Bold';
 }
 
+
+
+
 .main-documentation .article {
     padding: 44px;
     overflow-y: auto;
 }
 .main-documentation .article h1,
-.main-documentation .article h2,
-.main-documentation .article h3 {
+.main-documentation .article h2 {
     color: #1B1C26;
     font-family: 'Inter Bold';
 }
-.main-documentation .article .blocks-separator {
-    background-color: #1B1C26;
-    opacity: 0.4;
-    border-radius: 1px;
-    width: 90%;
-    height: 4px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-}
-.main-documentation .article .block:nth-child(2) {
-    margin-top: 60px;
-}
-.main-documentation .article .block {
-    margin-top: 50px;
-}
-.main-documentation .article .block .text-center {
+.text-center {
     text-align: center;
 }
-.main-documentation .article .block > .text,
-.main-documentation .article .block > .code,
-.main-documentation .article .block > .tip {
+
+.main-documentation .article div {
+    position: relative;
+}
+ .main-documentation .article .block {
+    padding: 0 30px;
+}
+.main-documentation .article .large-block {
+    margin-top: 50px;
+}
+.main-documentation .article .big-block {
+    margin-top: 30px;
+}
+.main-documentation .article .small-block {
+    padding-top: 25px;
+}
+.main-documentation .article .small-block > .block {
+    margin-top: 10px;
+}
+
+
+.editable-block {
+    background-color: #9af0ffa5;
+}
+.tools {
+    z-index: 10;
+    position: absolute !important;
+    display: none;
+    gap: 10px;
+}
+.editable-block > .tools {
+    display: flex;
+    top: 10px;
+    left: 10px;
+}
+.editable-block.block > .tools {
+    flex-direction: column;
+    top: 0;
+    left: 0;
+}
+.tools > img {
+    width: 24px;
+    height: 24px;
+}
+.tools > .move-button:hover {
+    cursor: grab;
+}
+.block-placeholder {
+    height: 100px;
+    background-color: #9AF0FF;
+    border-radius: 6px;
+    opacity: 0.7;
     margin-top: 20px;
 }
-.main-documentation .article .text {
+.block-placeholder::after {
+    content: 'Поместить здесь';
+    color: #1B1C26;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.empty {
+    height: 10px;
+}
+
+
+.dialog > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+}
+.dialog > form > textarea {
+    width: 90%;
+}
+
+
+
+.main-documentation .article .value,
+.main-documentation .article .value > div {
     color: #1B1C26;
     font-size: var(--default-font-size);
 }
@@ -240,7 +303,7 @@ main {
     font-family: 'Inter Bold';
 }
 
-.main-documentation .article .tip .text {
+.main-documentation .article .tip .value {
     font-size: var(--default-font-size);
     margin: 20px 0;
 }
@@ -252,7 +315,7 @@ main {
     margin-top: 20px;
     margin-left: 20px;
 }
-.main-documentation .article .list .text {
+.main-documentation .article .list .value {
     color: #1B1C26;
     font-size: var(--default-font-size);
     margin-left: 10px;
@@ -274,6 +337,9 @@ main {
     display: flex;
     align-items: center;
 }
+
+
+
 
 .main-documentation .sub-navigation .nav {
     width: fit-content;

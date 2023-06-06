@@ -10,16 +10,15 @@ namespace html_creator_documentation.Pages
     public class DocsModel : PageModel
     {
         public string Title { get; set; } = "";
-        public List<ArticleBlock> ArticleBlocks { get; set; } = new();
+        public List<ArticleElement> ArticleElements { get; set; } = new();
 
         public bool HasTitle
         {
             get
             {
-                foreach (var block in ArticleBlocks)
-                    foreach (var element in block.Elements)
-                        if (element.Type == ArticleElementsTypes.Title)
-                            return true;
+                foreach (var element in ArticleElements)
+                    if (element.Type == ArticleElementsTypes.LargeBlock)
+                        return true;
                 return false;
             }
         }
@@ -29,9 +28,8 @@ namespace html_creator_documentation.Pages
 
         public List<ArticleElement> GetTitles()
         {
-            return (from b in ArticleBlocks
-                    from e in b.Elements
-                    where e.Type == ArticleElementsTypes.Title
+            return (from e in ArticleElements
+                    where e.Type == ArticleElementsTypes.LargeBlock
                     select e).ToList();
         }
 
@@ -47,6 +45,7 @@ namespace html_creator_documentation.Pages
             }
             catch { }
 
+            CanEdit = true;
             GetArticle(topic);
         }
 
@@ -78,7 +77,7 @@ namespace html_creator_documentation.Pages
             {
                 using (StreamReader sr = new($"Data/Articles/{topic}.json"))
                 {
-                    ArticleBlocks = JsonSerializer.Deserialize<List<ArticleBlock>>(sr.ReadToEnd()) ?? new();
+                    ArticleElements = JsonSerializer.Deserialize<List<ArticleElement>>(sr.ReadToEnd()) ?? new();
                 }
             }
             catch { }
