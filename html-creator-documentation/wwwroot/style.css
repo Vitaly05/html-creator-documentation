@@ -5,7 +5,6 @@
 
     font-family: 'Inter';
     font-style: normal;
-    color: #00C2E3;
 }
 
 @font-face {
@@ -23,6 +22,8 @@
     --semi-big-font-size: 36px;
     --middle-font-size: 26px;
     --default-font-size: 20px;
+    --semi-default-font-size: 16px;
+    --small-font-size: 14px;
 }
 
 a {
@@ -77,6 +78,7 @@ h3 {
 header, footer {
     background-color: #1B1C26;
     font-size: var(--default-font-size);
+    color: #00C2E3;
 }
 header {
     height: 8vh;
@@ -87,6 +89,9 @@ footer {
     border-top: 1px solid #FFFFFF;
 }
 
+header a {
+    color: #00C2E3;
+}
 header .logo .text {
     color: #65E9FF;
     font-family: 'Inter Bold';
@@ -129,6 +134,7 @@ main {
 }
 .main .sub-text {
     font-size: var(--semi-big-font-size);
+    color: #00C2E3;
 }
 .main button {
     padding: 1vh 2vw;
@@ -218,7 +224,7 @@ main {
 .main-documentation .article .small-block {
     padding-top: 25px;
 }
-.main-documentation .article .small-block > .block {
+.main-documentation .article .block {
     margin-top: 10px;
 }
 
@@ -268,6 +274,24 @@ main {
     height: 10px;
 }
 
+.new-item {
+    color: #1B1C26;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.new-item button {
+    padding: 30px;
+    background-color: transparent;
+    border: none;
+    font-size: var(--small-font-size);
+    transition: font-size 0.5s ease 0s;
+}
+.new-item button:hover {
+    cursor: pointer;
+    font-size: var(--semi-default-font-size);
+}
 
 .dialog > form {
     display: flex;

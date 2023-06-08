@@ -2,12 +2,12 @@
 @using html_creator_documentation.Models;
 @model ArticleElementModel
 
-<div class="@Model.ArticleElement.Type">
+<div class="@Model.ArticleElement.Type block-item" data-block-type="@Model.ArticleElement.Type">
     @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = Model.ArticleElement.Type, CanEdit = Model.CanEdit })
     
-    @if (Model.ArticleElement.Title != String.Empty)
+    @if (!String.IsNullOrEmpty(Model.ArticleElement.Title))
     {
-        <h2 class="title text-center" id="@Model.ArticleElement.Title">@Model.ArticleElement.Title</h2>
+        <h2 class="title block-title text-center" id="@Model.ArticleElement.Title">@Model.ArticleElement.Title</h2>
     }
 
     @if (Model.ArticleElement.InnerElements.Count > 0)
@@ -17,14 +17,14 @@
         {
             if (innerElement.Type == ArticleElementsTypes.Description)
             {
-                <div class="text block">
+                <div class="text block block-item" data-block-type="@innerElement.Type">
                     @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
                     <div class="value">@innerElement.Value</div>
                     </div>
             }
             else if (innerElement.Type == ArticleElementsTypes.List)
             {
-                <div class="list block">
+                <div class="list block block-item" data-block-type="@innerElement.Type">
                     @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
                     @foreach (var value in innerElement.ListValues)
                     {
@@ -37,7 +37,7 @@
             }
             else if (innerElement.Type == ArticleElementsTypes.Tip)
             {
-                <div class="block flex column-direction jc-space-between">
+                <div class="block flex column-direction jc-space-between block-item" data-block-type="@innerElement.Type">
                     @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
                     <div class="tip">
                         <div class="flex">
@@ -50,7 +50,7 @@
             }
             else if (innerElement.Type == ArticleElementsTypes.Code)
             {
-                <div class="block">
+                <div class="block block-item" data-block-type="@innerElement.Type">
                     @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = "block", CanEdit = Model.CanEdit })
                     <div class="code">
                         @for (int iii = 0; iii < innerElement.ListValues.Count(); ++iii)
@@ -69,5 +69,11 @@
                 })
             }
         }
+    }
+    @if (Model.CanEdit)
+    {
+        <div class="new-item">
+            <button>+ Добавить блок в "@(Model.ArticleElement.Title != String.Empty ? Model.ArticleElement.Title : Model.ArticleElement.Type)"</button>
+        </div>
     }
 </div>
