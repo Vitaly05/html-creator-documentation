@@ -79,9 +79,12 @@
                 })
             }
 
-            <div class="new-item">
-                <button>+ Добавить блок в "@Model.Title"</button>
-            </div>
+            @if (Model.CanEdit)
+            {
+                <div class="new-item">
+                    <button>+ Добавить блок в "@Model.Title"</button>
+                </div>
+            }
 
         </div>
 
@@ -101,15 +104,23 @@
                         }
                     </div>
                 </div>
+
+                @if (Model.CanEdit)
+                {
+                    <button id="save-button" class="clickable-element">Сохранить</button>
+                }
             </div>
         }
 
-        <div class="dialog" id="edit-dialog" title="Редактирование контента">
-            <form>
-                <label for="value">Значение</label>
-                <textarea type="text" name="value"></textarea>
-            </form>
-        </div>
+        @if (Model.CanEdit)
+        {
+            <div class="dialog" id="edit-dialog" title="Редактирование контента">
+                <form>
+                    <label for="value">Значение</label>
+                    <textarea type="text" name="value"></textarea>
+                </form>
+            </div>
+        }
     </main>
 
     <footer class="flex jc-center ai-center">

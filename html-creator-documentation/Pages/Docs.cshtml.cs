@@ -1,4 +1,5 @@
 using html_creator_documentation.Data;
+using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,14 @@ namespace html_creator_documentation.Pages
 {
     public class DocsModel : PageModel
     {
+        public DocsModel(IDocumentationArticle documentationContext)
+        {
+            _documentationContext = documentationContext;
+        }
+
+        private IDocumentationArticle _documentationContext;
+
+
         public string Title { get; set; } = "";
         public List<ArticleElement> ArticleElements { get; set; } = new();
 
@@ -73,14 +82,7 @@ namespace html_creator_documentation.Pages
         private void LoadArticle(string topic)
         {
             Title = topic;
-            try
-            {
-                using (StreamReader sr = new($"Data/Articles/{topic}.json"))
-                {
-                    ArticleElements = JsonSerializer.Deserialize<List<ArticleElement>>(sr.ReadToEnd()) ?? new();
-                }
-            }
-            catch { }
+            ArticleElements = _documentationContext.GetArticleElementsFrom(topic);
         }
     }
 }

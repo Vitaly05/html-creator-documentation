@@ -52,14 +52,43 @@ var editValue
 $('.value').attr('contenteditable', 'true')
 $('h2.title').attr('contenteditable', 'true')
 
+const articleName = $('.article-title').text()
 
-GetArticleJson()
+let updateArticleRequest = getHttpRequest()
+updateArticleRequest.open('POST', `/documentation/update/${articleName}`, true)
+updateArticleRequest.setRequestHeader('Content-Type', 'application/json')
+
+updateArticleRequest.onreadystatechange = function() {
+    if (updateArticleRequest.readyState == 4) {
+        if (updateArticleRequest.status == 200) {
+            window.location.href = `/docs?topic=${articleName}`
+        }
+        else if (updateArticleRequest.status == 500) {
+            console.error('Ошибка сервера: Не удалось обновить статью')
+        }
+    }
+}
+
+$('#save-button').click(function() {
+    updateArticleRequest.send(GetArticleJson())
+})
+
+function getHttpRequest() {
+    let httpRequest
+    if (window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest()
+    } else if (window.ActiveXObject) {
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    return httpRequest
+}
+
 function GetArticleJson() {
     let json = []
     $('.article > .block-item').each(function() {
         json.push(GetElementJson($(this)))
     })
-    console.log(JSON.stringify(json, undefined, 2))
+    return JSON.stringify(json)
 }
 function GetElementJson(element) {
     let json = {}
