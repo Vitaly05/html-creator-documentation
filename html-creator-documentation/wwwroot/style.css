@@ -199,11 +199,18 @@ main {
 .main-documentation .article {
     padding: 44px;
     overflow-y: auto;
+    word-wrap: anywhere;
 }
 .main-documentation .article h1,
 .main-documentation .article h2 {
     color: #1B1C26;
     font-family: 'Inter Bold';
+}
+.main-documentation .article .big-block > h2 {
+    font-size: var(--middle-font-size);
+}
+.main-documentation .article .small-block > h2 {
+    font-size: var(--default-font-size);
 }
 .text-center {
     text-align: center;

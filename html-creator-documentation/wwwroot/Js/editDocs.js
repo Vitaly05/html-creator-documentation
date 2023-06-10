@@ -1,31 +1,31 @@
-class SortableElement {
-    constructor(container, sortableSelector) {
-        this.container = container
-        this.sortableSelector = sortableSelector
+class Block {
+    constructor(type, innerBlock) {
+        this.type = type
+        this.innerBlockType = innerBlock
     }
 }
 
-const sortableElements = [
-    new SortableElement('article', 'large-block'),
-    new SortableElement('large-block', 'big-block'),
-    new SortableElement('big-block', 'small-block'),
-    new SortableElement('small-block', 'block')
+const blocks = [
+    new Block('article', 'large-block'),
+    new Block('large-block', 'big-block'),
+    new Block('big-block', 'small-block'),
+    new Block('small-block', 'block')
 ]
-sortableElements.forEach(sortableElement => {
-    $(`.${sortableElement.sortableSelector}`).mouseenter(function(e) {
+blocks.forEach(block => {
+    $(`.${block.innerBlockType}`).mouseenter(function(e) {
         e.preventDefault()
         e.stopPropagation()
         $(this).parents().removeClass('editable-block')
         $(this).addClass('editable-block')
     })
-    $(`.${sortableElement.sortableSelector}`).mouseleave(function() {
+    $(`.${block.innerBlockType}`).mouseleave(function() {
         $(this).removeClass('editable-block')
     })
-    $(`.${sortableElement.container}`).sortable({
+    $(`.${block.type}`).sortable({
         placeholder: 'block-placeholder',
         cursor: 'move',
-        handle: `.move-button[data-target="${sortableElement.sortableSelector}"]`,
-        items: `.${sortableElement.sortableSelector}`
+        handle: `.move-button[data-target="${block.innerBlockType}"]`,
+        items: `.${block.innerBlockType}`
     })
 })
 $('.empty').mouseenter(function(e) {
@@ -34,20 +34,67 @@ $('.empty').mouseenter(function(e) {
     $(this).parent().addClass('editable-block')
 })
 
-const editDialog = $('#edit-dialog').dialog({
-    autoOpen: false,
-    height: 700,
-    width: 1000,
-    modal: true
+$('.delete-button').click(function() {
+    $(this).parent().parent().remove()
 })
-var editValue
 
-// $('.new-item').click(function() {
-//     const parentBlock = $(this).parent().parent()
-//     const value = parentBlock.find('.value').text()
-//     editDialog.find('[name=value]').val(value)
-//     editDialog.dialog('open')
-// })
+
+const newBlockDialog = $('#new-block-dialog').dialog({
+    autoOpen: false,
+    height: 300,
+    width: 400,
+    modal: true,
+    buttons: [
+        {
+            text: 'Добавить',
+            click: function() {
+                
+            }
+        },
+        {
+            text: 'Отмена',
+            click: function() {
+                $(this).find('form')[0].reset()
+                $(this).dialog('close')
+            }
+        }
+    ]
+})
+
+$('.new-item button').click(function() {
+    let currentBlock = $(this).parent().parent()
+    let currentBlockType = currentBlock.data('block-type')
+    let newBlockType = ''
+
+    blocks.forEach(block => {
+        if (block.type == currentBlockType) {
+            newBlockType = block.innerBlockType
+        }
+    })
+
+    showDialog(newBlockType)
+})
+
+function showDialog(type) {
+    newBlockDialog.find('form')[0].reset()
+    setFieldsParams(type)
+    newBlockDialog.data('block-type', type)
+    newBlockDialog.dialog('open')
+}
+
+function setFieldsParams(type) {
+    switch (type) {
+        case 'large-block':
+        case 'big-block':
+        case 'small-block':
+            newBlockDialog.find('label').text('Title')
+            break
+        case 'block':
+            newBlockDialog.find('label').text('Content')
+            break
+    }
+}
+
 
 $('.value').attr('contenteditable', 'true')
 $('h2.title').attr('contenteditable', 'true')

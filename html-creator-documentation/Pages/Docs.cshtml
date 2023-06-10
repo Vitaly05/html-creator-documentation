@@ -68,7 +68,7 @@
             <a href="/docs?topic=@Topics.Examples"><div class="@(Model.Title == Topics.Examples ? "selected" : null)">@Topics.Examples</div></a>
         </div>
 
-        <div class="article">
+        <div class="article" data-block-type="article">
             <h1 class="article-title">@Model.Title</h1>
 
             @foreach (var element in Model.ArticleElements)
@@ -114,9 +114,9 @@
 
         @if (Model.CanEdit)
         {
-            <div class="dialog" id="edit-dialog" title="Редактирование контента">
+            <div class="dialog" id="new-block-dialog" title="Добавление блока">
                 <form>
-                    <label for="value">Значение</label>
+                    <label for="value"></label>
                     <textarea type="text" name="value"></textarea>
                 </form>
             </div>

@@ -3,6 +3,7 @@ using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -56,6 +57,16 @@ namespace html_creator_documentation.Pages
 
             CanEdit = true;
             GetArticle(topic);
+        }
+
+        public IActionResult OnGetElement([FromBody] ArticleElement articleElement)
+        {
+            var f = Partial("_ArticleElement", new ArticleElementModel
+            {
+                CanEdit = CanEdit,
+                ArticleElement = articleElement
+            });
+            return f;
         }
 
 
