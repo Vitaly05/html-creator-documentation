@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="jQueryUI/jquery-ui.min.css" />
     <script src="jQuery/jquery.js"></script>
     <script src="jQueryUI/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="jQueryUI/jquery-ui.min.css" />
     <link rel="stylesheet" href="style.css" />
 
     <title>HTML Creator Library - @Model.Title</title>
@@ -73,7 +73,7 @@
 
             @foreach (var element in Model.ArticleElements)
             {
-                @await Html.PartialAsync("_ArticleElement", new ArticleElementModel {
+                @await Html.PartialAsync("_ArticleBlock", new ArticleElementModel {
                     CanEdit = Model.CanEdit,
                     ArticleElement = element
                 })
@@ -116,8 +116,27 @@
         {
             <div class="dialog" id="new-block-dialog" title="Добавление блока">
                 <form>
-                    <label for="value"></label>
-                    <textarea type="text" name="value"></textarea>
+                    <select id="block-type-select" name="type">
+                        <option value="description" selected>Текст</option>
+                        <option value="code">Код</option>
+                        <option value="list">Список</option>
+                        <option value="tip">Совет</option>
+                    </select>
+
+                    <div id="single-item">
+                        <label for="value"></label>
+                        <textarea type="text" name="value"></textarea>
+                    </div>
+
+                    <div id="list-items">
+                        <div class="list-item">
+                            <label for="value">Элемент</label>
+                            <textarea type="text" name="value"></textarea>
+                            <button type="button" class="remove-list-item-button clickable-element"><img src="Res/Delete.svg" alt="del"/></button>
+                        </div>
+                        <button id="new-list-item-button" class="clickable-element" type="button">+ Добавить</button>
+                    </div>
+
                 </form>
             </div>
         }

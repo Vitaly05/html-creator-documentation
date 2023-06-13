@@ -1,0 +1,27 @@
+﻿@using html_creator_documentation.Data;
+@using html_creator_documentation.Models;
+@model ArticleElementModel
+
+<div class="@Model.ArticleElement.Type block-item" data-block-type="@Model.ArticleElement.Type">
+    @await Html.PartialAsync("_ArticleEditTools", new ArticleEditToolsModel { Target = Model.ArticleElement.Type, CanEdit = Model.CanEdit })
+    
+    @if (!String.IsNullOrEmpty(Model.ArticleElement.Title))
+    {
+        <h2 class="title block-title text-center" id="@Model.ArticleElement.Title">@Model.ArticleElement.Title</h2>
+    }
+
+    <div class="empty"></div>
+    @foreach (var innerElement in Model.ArticleElement.InnerElements)
+    {
+        @await Html.PartialAsync("_ArticleElement", new ArticleElementModel {
+            CanEdit = Model.CanEdit,
+            ArticleElement = innerElement
+        })
+    }
+    @if (Model.CanEdit)
+    {
+        <div class="new-item">
+            <button>+ Добавить блок в "@(Model.ArticleElement.Title != String.Empty ? Model.ArticleElement.Title : Model.ArticleElement.Type)"</button>
+        </div>
+    }
+</div>

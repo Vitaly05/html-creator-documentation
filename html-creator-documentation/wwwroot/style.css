@@ -300,15 +300,42 @@ main {
     font-size: var(--semi-default-font-size);
 }
 
-.dialog > form {
+.dialog form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     row-gap: 10px;
 }
-.dialog > form > textarea {
+.dialog form > div {
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+.dialog form textarea {
+    width: 100%;
+    border: 1px solid #1B1C26;
+    border-radius: 4px;
+    padding: 4px;
+}
+.dialog .list-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+.dialog button {
+    border: none;
+    background-color: transparent;
+}
+
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: 'Inter';
 }
 
 

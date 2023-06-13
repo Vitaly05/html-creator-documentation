@@ -1,11 +1,16 @@
 using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Services;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddSession();
+builder.Services.AddMvc().AddRazorPagesOptions(options =>
+{
+    options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+});
 
 builder.Services.AddSingleton<IDocumentationArticle, FileDocumentationService>();
 

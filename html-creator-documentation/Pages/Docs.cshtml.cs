@@ -59,14 +59,14 @@ namespace html_creator_documentation.Pages
             GetArticle(topic);
         }
 
-        public IActionResult OnGetElement([FromBody] ArticleElement articleElement)
+        public IActionResult OnPost([FromBody] ArticleElement articleElement)
         {
-            var f = Partial("_ArticleElement", new ArticleElementModel
+            var htmlArticleElement = Partial("_ArticleElement", new ArticleElementModel
             {
-                CanEdit = CanEdit,
+                CanEdit = true,
                 ArticleElement = articleElement
             });
-            return f;
+            return htmlArticleElement;
         }
 
 
