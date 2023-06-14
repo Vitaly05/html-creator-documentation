@@ -109,6 +109,10 @@
                 {
                     <button id="save-button" class="clickable-element">Сохранить</button>
                 }
+                else
+                {
+                    <button id="edit-article-button" class="clickable-element"><img src="Res/Edit.svg" alt="edit" /></button>
+                }
             </div>
         }
 
@@ -149,6 +153,20 @@
     @if (Model.CanEdit)
     {
         <script src="Js/editDocs.js"></script>
+    }
+    else
+    {
+        <script>
+            const accessToken = window.sessionStorage.getItem('accessToken')
+            if (accessToken != null && !window.location.href.includes(accessToken)) {
+                let symbol = window.location.href.includes('?') ? '&' : '?'
+                window.location.href += `${symbol}accessToken=${accessToken}`
+            }
+
+            document.querySelector('#edit-article-button').addEventListener('click', () => {
+                window.location.href = 'auth'
+            })
+        </script>
     }
 </body>
 </html>

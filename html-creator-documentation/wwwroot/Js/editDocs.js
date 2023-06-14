@@ -218,14 +218,20 @@ const articleName = $('.article-title').text()
 let updateArticleRequest = getHttpRequest()
 updateArticleRequest.open('POST', `/documentation/update/${articleName}`, true)
 updateArticleRequest.setRequestHeader('Content-Type', 'application/json')
+updateArticleRequest.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('accessToken')}`)
 
 updateArticleRequest.onreadystatechange = function() {
     if (updateArticleRequest.readyState == 4) {
         if (updateArticleRequest.status == 200) {
+            window.sessionStorage.removeItem('accessToken')
             window.location.href = `/docs?topic=${articleName}`
         }
         else if (updateArticleRequest.status == 500) {
             console.error('Ошибка сервера: Не удалось обновить статью')
+        }
+        else if (updateArticleRequest.status == 401) {
+            alert('Время доступа истекло')
+            window.location.href = 'docs'
         }
     }
 }

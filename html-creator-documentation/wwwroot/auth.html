@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Creator Library - authorization</title>
+</head>
+<body>
+    <div>
+        <input name="login" type="text" placeholder="Login">
+        <input name="password" type="password" placeholder="Password">
+        <button id="back-button">Назад</button>
+        <button id="login-button">Войти</button>
+    </div>
+
+    <script>
+        const loginInput = document.querySelector('input[name=login]')
+        const passwordInput = document.querySelector('input[name=password]')
+
+        document.querySelector('#back-button').addEventListener('click', () => {
+            window.location.href = 'docs'
+        })
+        document.querySelector('#login-button').addEventListener('click', async () => {
+            await fetch(`documentation/getToken?login=${loginInput.value}&password=${passwordInput.value}`)
+                .then(async response => {
+                    if (response.ok) {
+                        const accessToken = await response.json()
+                        window.sessionStorage.setItem('accessToken', accessToken)
+                        window.location.href = `docs?accessToken=${accessToken}`
+                    } else {
+                        alert(await response.text())
+                    }
+                })
+        })
+    </script>
+</body>
+</html>

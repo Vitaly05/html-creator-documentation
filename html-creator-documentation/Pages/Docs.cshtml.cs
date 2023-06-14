@@ -1,9 +1,12 @@
 using html_creator_documentation.Data;
 using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Models;
+using html_creator_documentation.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -11,12 +14,15 @@ namespace html_creator_documentation.Pages
 {
     public class DocsModel : PageModel
     {
-        public DocsModel(IDocumentationArticle documentationContext)
+        public DocsModel(IDocumentationArticle documentationContext,
+            JwtService jwtService)
         {
             _documentationContext = documentationContext;
+            _jwtService = jwtService;
         }
 
         private IDocumentationArticle _documentationContext;
+        private JwtService _jwtService;
 
 
         public string Title { get; set; } = "";
@@ -44,18 +50,20 @@ namespace html_creator_documentation.Pages
         }
 
 
-        public void OnGet(string topic)
+        public void OnGet(string topic, string accessToken)
         {
-            try
+            if (accessToken is not null)
             {
-                //HttpContext.Session.SetString("access", "admin");
-                if (HttpContext.Session.Keys.Contains("access"))
-                    if (HttpContext.Session.GetString("access").Equals("admin"))
+                var decodedToken = _jwtService.DecodeJwtToken(accessToken);
+                if (decodedToken is not null)
+                {
+                    if (decodedToken.FindFirstValue("access") == AuthOptions.ACCESS_KEY)
+                    {
                         CanEdit = true;
+                    }
+                }
             }
-            catch { }
 
-            CanEdit = true;
             GetArticle(topic);
         }
 

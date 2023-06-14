@@ -446,3 +446,12 @@ main {
     font-family: 'Inter Bold';
     color: #9AF0FF;
 }
+
+.main-documentation #edit-article-button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    align-self: flex-end;
+    margin-right: 20px;
+}
