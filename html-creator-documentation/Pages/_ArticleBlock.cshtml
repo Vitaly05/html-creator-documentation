@@ -10,7 +10,10 @@
         <h2 class="title block-title text-center" id="@Model.ArticleElement.Title">@Model.ArticleElement.Title</h2>
     }
 
-    <div class="empty"></div>
+    @if (Model.CanEdit)
+    {
+        <div class="empty"></div>
+    }
     @foreach (var innerElement in Model.ArticleElement.InnerElements)
     {
         @await Html.PartialAsync("_ArticleElement", new ArticleElementModel {

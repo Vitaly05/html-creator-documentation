@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="jQueryUI/jquery-ui.min.css" />
     <script src="jQuery/jquery.js"></script>
+    <script src="jQuery/jquery.validate.min.js"></script>
     <script src="jQueryUI/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="style.css" />
 
@@ -88,9 +89,9 @@
 
         </div>
 
+        <div class="sub-navigation flex jc-center">
         @if (Model.HasTitle)
         {
-            <div class="sub-navigation flex jc-center">
                 <div class="nav">
                     <div class="top flex ai-center">
                         <img src="Res/List.svg" alt="List">
@@ -105,16 +106,16 @@
                     </div>
                 </div>
 
-                @if (Model.CanEdit)
-                {
-                    <button id="save-button" class="clickable-element">Сохранить</button>
-                }
-                else
-                {
-                    <button id="edit-article-button" class="clickable-element"><img src="Res/Edit.svg" alt="edit" /></button>
-                }
-            </div>
         }
+            @if (Model.CanEdit)
+            {
+                <button id="save-button" class="clickable-element">Сохранить</button>
+            }
+            else
+            {
+                <button id="edit-article-button" class="clickable-element"><img src="Res/Edit.svg" alt="edit" /></button>
+            }
+        </div>
 
         @if (Model.CanEdit)
         {
@@ -144,6 +145,24 @@
                 </form>
             </div>
         }
+        else
+        {
+            <div class="dialog" id="auth-dialog" title="Авторизация">
+                <form autocomplete="off">
+                    <div>
+                        <label for="login">Логин</label>
+                        <input name="login" type="text" id="login-field">
+                    </div>
+                    <div>
+                        <label for="password">Пароль</label>
+                        <input name="password" type="password" id="password-field">
+                    </div>
+
+                    <div class="error" id="invalid-auth-data" style="display: none;">Неверный логин или пароль</div>
+                </form>
+            </div>
+        }
+
     </main>
 
     <footer class="flex jc-center ai-center">
@@ -158,14 +177,86 @@
     {
         <script>
             const accessToken = window.sessionStorage.getItem('accessToken')
-            if (accessToken != null && !window.location.href.includes(accessToken)) {
-                let symbol = window.location.href.includes('?') ? '&' : '?'
-                window.location.href += `${symbol}accessToken=${accessToken}`
-            }
+            setAccessToken(accessToken)
+
+            const loginInput = $('#login-field')
+            const passwordInput = $('#password-field')
+
+            const authDialog = $('#auth-dialog').dialog({
+                autoOpen: false,
+                height: 500,
+                width: 700,
+                modal: true,
+                buttons: [
+                    {
+                        text: 'Войти',
+                        click: async function () {
+                            if (authForm.valid()) {
+                                await fetch(`documentation/getToken?login=${loginInput.val()}&password=${passwordInput.val()}`)
+                                    .then(async response => {
+                                        if (response.ok) {
+                                            const accessToken = await response.json()
+                                            window.sessionStorage.setItem('accessToken', accessToken)
+                                            setAccessToken(accessToken)
+                                        } else {
+                                            $('#invalid-auth-data').show()
+                                        }
+                                    })
+                            }
+                        }
+                    },
+                    {
+                        text: 'Отмена',
+                        click: function () {
+                            $(this).dialog('close')
+                        }
+                    }
+                ]
+            })
+
+            const authForm = authDialog.children('form')
+            authForm.validate({
+                rules: {
+                    login: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 20
+                    },
+                    password: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 20
+                    }
+                },
+                messages: {
+                    login: {
+                        required: 'Введите логин',
+                        minlength: 'Минимальная длинна логина 4 символа',
+                        maxlength: 'Максимальная длинна логина 20 символов'
+                    },
+                    password: {
+                        required: 'Введите пароль',
+                        minlength: 'Минимальная длинна пароля 4 символа',
+                        maxlength: 'Максимальная длинна пароля 20 символов'
+                    },
+                }
+            })
 
             document.querySelector('#edit-article-button').addEventListener('click', () => {
-                window.location.href = 'auth'
+                authDialog.dialog('open')
             })
+
+            function setAccessToken(accessToken) {
+                if (accessToken != null && !window.location.href.includes(accessToken)) {
+                    if (window.location.href.includes('#')) {
+                        const anchor = window.location.href.slice(window.location.href.indexOf('#'), window.location.href.length)
+                        window.location.href = window.location.href.replace(anchor, '')
+                        console.log(anchor)
+                    }
+                    let symbol = window.location.href.includes('?') ? '&' : '?'
+                    window.location.href += `${symbol}accessToken=${accessToken}`
+                }
+            }
         </script>
     }
 </body>

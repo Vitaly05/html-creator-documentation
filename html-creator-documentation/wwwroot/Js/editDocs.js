@@ -261,10 +261,10 @@ function GetElementJson(element) {
     let json = {}
 
     const type = element.data('block-type')
-    json.type = type
+    json.type = type ?? ''
 
-    const title = element.find('.block-title:first').text()
-    json.title = title
+    const title = element.children('.block-title').text()
+    json.title = title ?? ''
 
     const innerElements = element.find(`> .block-item`)
     if (innerElements.length > 0) {
@@ -276,7 +276,7 @@ function GetElementJson(element) {
         switch (type) {
             case 'description':
             case 'tip':
-                const value = element.find('.value:first').text()
+                const value = element.children('.value').text()
                 if (value != '') {
                     json.value = value
                 }

@@ -315,7 +315,8 @@ main {
     align-items: center;
     row-gap: 10px;
 }
-.dialog form textarea {
+.dialog form textarea,
+.dialog form input {
     width: 100%;
     border: 1px solid #1B1C26;
     border-radius: 4px;
@@ -454,4 +455,17 @@ main {
     border: none;
     align-self: flex-end;
     margin-right: 20px;
+}
+
+
+
+#auth-dialog form {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+}
+.error {
+    color: rgb(243, 72, 72);
 }
