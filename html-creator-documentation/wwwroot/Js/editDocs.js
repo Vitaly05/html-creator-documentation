@@ -276,7 +276,7 @@ function GetElementJson(element) {
         switch (type) {
             case 'description':
             case 'tip':
-                const value = element.children('.value').text()
+                const value = element.find('.value:first').text()
                 if (value != '') {
                     json.value = value
                 }

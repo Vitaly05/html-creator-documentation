@@ -101,7 +101,10 @@
 
                         @foreach (var element in Model.GetTitles())
                         {
-                            <a href="#@element.Title"><div>@element.Title</div></a>
+                            <div>
+                                <img src="Res/List Item.svg" alt="-">
+                                <a href="#@element.Title" class="clickable-element"><div>@element.Title</div></a>
+                            </div>
                         }
                     </div>
                 </div>

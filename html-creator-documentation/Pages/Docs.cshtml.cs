@@ -33,7 +33,8 @@ namespace html_creator_documentation.Pages
             get
             {
                 foreach (var element in ArticleElements)
-                    if (element.Type == ArticleElementsTypes.LargeBlock)
+                    if (element.Type == ArticleElementsTypes.LargeBlock &&
+                        !String.IsNullOrWhiteSpace(element.Title))
                         return true;
                 return false;
             }

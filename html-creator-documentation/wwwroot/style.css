@@ -410,6 +410,7 @@ main {
 .main-documentation .sub-navigation .nav {
     width: fit-content;
     min-width: 200px;
+    max-height: 80%;
     margin-right: 5vw;
 }
 .main-documentation .sub-navigation .top {
@@ -429,11 +430,15 @@ main {
     border-radius: 0px 0px 6px 6px;
     padding: 12px;
     row-gap: 10px;
-    max-height: 80%;
 }
-.main-documentation .sub-navigation .bottom div {
+.main-documentation .sub-navigation .bottom a div {
     color: #1B1C26;
     font-size: var(--default-font-size);
+}
+.main-documentation .sub-navigation .bottom > div {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
 }
 .main-documentation #save-button {
     padding: 10px;
