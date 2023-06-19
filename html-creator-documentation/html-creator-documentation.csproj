@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Files\html-creator-library.dll" />
     <None Include="wwwroot\Fonts\Inter-Bold.ttf" />
     <None Include="wwwroot\Fonts\Inter-Regular.ttf" />
     <None Include="wwwroot\index.html" />
@@ -25,6 +24,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="html-creator-library">
+      <HintPath>wwwroot\Files\html-creator-library.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 using html_creator_documentation.Data;
 using html_creator_documentation.Data.Interfaces;
+using html_creator_documentation.HtmlElements;
 using html_creator_documentation.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddSingleton<IDocumentationArticle, FileDocumentationService>();
 builder.Services.AddTransient<JwtService>();
+builder.Services.AddTransient<ArticleElementsCreator>();
 
 var app = builder.Build();
 

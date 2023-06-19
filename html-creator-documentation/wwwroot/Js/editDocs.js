@@ -12,7 +12,9 @@ const blocks = [
     new Block('small-block', 'block')
 ]
 
-turnOnEditMode()
+$(document).ready(function() {
+    turnOnEditMode()
+})
 
 function turnOnEditMode() {
     blocks.forEach(block => {

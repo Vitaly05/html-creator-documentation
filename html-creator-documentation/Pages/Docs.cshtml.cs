@@ -2,27 +2,24 @@ using html_creator_documentation.Data;
 using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Models;
 using html_creator_documentation.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Reflection;
 using System.Security.Claims;
-using System.Text.Json;
-using System.Xml.Linq;
 
 namespace html_creator_documentation.Pages
 {
     public class DocsModel : PageModel
     {
+        private IDocumentationArticle _documentationContext;
+        private JwtService _jwtService;
+
+
         public DocsModel(IDocumentationArticle documentationContext,
             JwtService jwtService)
         {
             _documentationContext = documentationContext;
             _jwtService = jwtService;
         }
-
-        private IDocumentationArticle _documentationContext;
-        private JwtService _jwtService;
 
 
         public string Title { get; set; } = "";
