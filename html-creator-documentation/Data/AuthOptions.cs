@@ -11,7 +11,7 @@ namespace html_creator_documentation.Data
         const string KEY = "JJVKSDJ2eiouet[sd)**@LKkdjfkekegfjg";
         public const string ACCESS_KEY = "ew349990KJJF[-wjhfj37jwfjzsh_+#WdfdfecvV";
 
-        public const int LIFETIME = 30;
+        public const int LIFETIME = 100;
 
         public static TokenValidationParameters GetTokenValidationParameters()
         {
