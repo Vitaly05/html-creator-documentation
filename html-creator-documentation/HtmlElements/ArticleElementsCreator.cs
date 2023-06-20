@@ -214,7 +214,7 @@ namespace html_creator_documentation.HtmlElements
                                 new TextArea(new HtmlAttribute().Name("value").Custom("type=\"text\""))
                             ),
                             new Div(
-                                new HtmlAttribute().Class("list-items"),
+                                new HtmlAttribute().Id("list-items"),
                                 new Div(
                                     new HtmlAttribute().Class("list-item"),
                                     new Label(
@@ -304,7 +304,7 @@ namespace html_creator_documentation.HtmlElements
         public BodyComponent CreateArticleBlock(ArticleElementModel model)
         {
             var innerElements = new List<BodyComponent>();
-            innerElements.Add(CreateArticleEditTools(new ArticleEditToolsModel { Target = "block", CanEdit = model.CanEdit }));
+            innerElements.Add(CreateArticleEditTools(new ArticleEditToolsModel { Target = model.ArticleElement.Type, CanEdit = model.CanEdit }));
 
             if (!String.IsNullOrEmpty(model.ArticleElement.Title))
             {

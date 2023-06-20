@@ -12,7 +12,7 @@ const blocks = [
     new Block('small-block', 'block')
 ]
 
-$(document).ready(function() {
+$(function() {
     turnOnEditMode()
 })
 
@@ -226,7 +226,7 @@ updateArticleRequest.onreadystatechange = function() {
     if (updateArticleRequest.readyState == 4) {
         if (updateArticleRequest.status == 200) {
             window.sessionStorage.removeItem('accessToken')
-            window.location.href = `/docs?topic=${articleName}`
+            window.location.href = `/documentation?topic=${articleName}`
         }
         else if (updateArticleRequest.status == 500) {
             console.error('Ошибка сервера: Не удалось обновить статью')
