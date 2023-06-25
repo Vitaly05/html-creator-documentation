@@ -62,8 +62,17 @@ namespace html_creator_documentation.Controllers
             return Json(token);
         }
 
-        /*[HttpGet("createElement")]
-        public IActionResult CreateElement()*/
+        [Authorize]
+        [HttpPost("createElement")]
+        public IActionResult CreateElement([FromBody] ArticleElement articleElement)
+        {
+            var html = _articleElementsCreator.GetArticleElementHtml(new ArticleElementModel
+            {
+                CanEdit = true,
+                ArticleElement = articleElement
+            });
+            return Ok(html);
+        }
 
         [Authorize]
         [HttpPost("update/{article}")]

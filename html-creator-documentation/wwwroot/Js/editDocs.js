@@ -82,9 +82,12 @@ const newBlockDialog = $('#new-block-dialog').dialog({
             text: 'Добавить',
             click: function() {
                 $.ajax({
-                    url: 'docs',
+                    url: 'documentation/createElement?articleElement',
                     type: 'POST',
                     contentType: 'application/json',
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+                    },
                     data: JSON.stringify(GetNewElementJson()),
                     success: function(data) {
                         newBlockContainer.find('.new-item:last').before(data)
