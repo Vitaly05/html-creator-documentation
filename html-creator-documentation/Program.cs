@@ -1,10 +1,10 @@
 using html_creator_documentation.Data;
-using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.HtmlElements;
+using html_creator_documentation.Repositories;
+using html_creator_documentation.Repositories.Interfaces;
 using html_creator_documentation.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = AuthOptions.GetTokenValidationParameters();
     });
 
-builder.Services.AddSingleton<IDocumentationArticle, FileDocumentationService>();
+builder.Services.AddSingleton<IDocumentationArticleRepository, FileRepository>();
 builder.Services.AddTransient<JwtService>();
 builder.Services.AddTransient<ArticleElementsCreator>();
 

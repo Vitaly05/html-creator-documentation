@@ -1,8 +1,8 @@
 ﻿using html_creator_documentation.Models;
 
-namespace html_creator_documentation.Data.Interfaces
+namespace html_creator_documentation.Repositories.Interfaces
 {
-    public interface IDocumentationArticle
+    public interface IDocumentationArticleRepository
     {
         List<ArticleElement> GetArticleElementsFrom(string name);
         void UpdateArticle(string name, List<ArticleElement> articleElements, Action onSuccess, Action onError);

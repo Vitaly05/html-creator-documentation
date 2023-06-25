@@ -1,11 +1,11 @@
-﻿using html_creator_documentation.Data.Interfaces;
-using html_creator_documentation.Models;
+﻿using html_creator_documentation.Models;
+using html_creator_documentation.Repositories.Interfaces;
 using System.Text;
 using System.Text.Json;
 
-namespace html_creator_documentation.Services
+namespace html_creator_documentation.Repositories
 {
-    public class FileDocumentationService : IDocumentationArticle
+    public class FileRepository : IDocumentationArticleRepository
     {
         public List<ArticleElement> GetArticleElementsFrom(string name)
         {

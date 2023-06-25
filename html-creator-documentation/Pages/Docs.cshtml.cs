@@ -1,6 +1,6 @@
 using html_creator_documentation.Data;
-using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.Models;
+using html_creator_documentation.Repositories.Interfaces;
 using html_creator_documentation.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,11 +10,11 @@ namespace html_creator_documentation.Pages
 {
     public class DocsModel : PageModel
     {
-        private IDocumentationArticle _documentationContext;
+        private IDocumentationArticleRepository _documentationContext;
         private JwtService _jwtService;
 
 
-        public DocsModel(IDocumentationArticle documentationContext,
+        public DocsModel(IDocumentationArticleRepository documentationContext,
             JwtService jwtService)
         {
             _documentationContext = documentationContext;

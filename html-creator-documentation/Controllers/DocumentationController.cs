@@ -1,7 +1,7 @@
 ﻿using html_creator_documentation.Data;
-using html_creator_documentation.Data.Interfaces;
 using html_creator_documentation.HtmlElements;
 using html_creator_documentation.Models;
+using html_creator_documentation.Repositories.Interfaces;
 using html_creator_documentation.Services;
 using html_creator_library.HeadComponents;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +18,13 @@ namespace html_creator_documentation.Controllers
     [Route("documentation")]
     public class DocumentationController : Controller
     {
-        private IDocumentationArticle _documentationContext;
+        private IDocumentationArticleRepository _documentationContext;
         private JwtService _jwtService;
         private ArticleElementsCreator _articleElementsCreator;
 
         private DocumentationModel model = new();
 
-        public DocumentationController(IDocumentationArticle documentationContext,
+        public DocumentationController(IDocumentationArticleRepository documentationContext,
             JwtService jwtService,
             ArticleElementsCreator articleElementsCreator)
         {
